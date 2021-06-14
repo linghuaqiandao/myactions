@@ -6,7 +6,7 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 $.inviteCodeList = [];
 $.authorCodeList = [
-  "",
+  "_cZOuPTBYu5QyJXnqi1_mg","WeWNpq9_N2YIPXBIwGXMkw","iH9jN73fpGo5Y7_Z867mag","BKDC40Vcvz-6e7p4IkBKmw","jEVJ3XV_A2Un9B4jYbTMKg",
 ];
 let cookiesArr = [];
 let uniqueIdList = [
