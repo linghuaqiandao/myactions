@@ -1,5 +1,6 @@
 /*
-
+[Script]
+cron "50 7 * * *" script-path=jd_joy_park_open.js,tag=汪汪乐园开工位
 从CK1 开始开工位 1开满了开2 如此类推
 
 更新地址：https://github.com/Tsukasa007/my_script
