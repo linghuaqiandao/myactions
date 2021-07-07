@@ -1,13 +1,13 @@
 /*
 [Script]
-cron "15 9 * * *" script-path=jd_cash.js,tag=汪汪乐园任务
+cron "15 9 * * *" script-path=jd_joy_park_task.js,tag=汪汪乐园任务
 请确保新用户助力过开工位，否则开启游戏了就不算新用户，后面就不能助力开工位了！！！！！！！！！！
 
 更新地址：https://github.com/Tsukasa007/my_script
 ============Quantumultx===============
 [task_local]
 #汪汪乐园每日任务
-0 0 9 * * * https://x.js, tag=汪汪乐园每日任务, img-url=https://x.png, enabled=true
+15 9 * * * https://x.js, tag=汪汪乐园每日任务, img-url=https://x.png, enabled=true
 */
 const $ = new Env('汪汪乐园每日任务');
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
