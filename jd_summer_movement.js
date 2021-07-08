@@ -20,11 +20,16 @@ const ShHelpAuthorFlag = true;//是否助力作者SH  true 助力，false 不助
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [];
 $.cookie = '';
-$.inviteList = [];
+$.inviteList = [
+  'HcmphKvwI0n8PNTMaatUn9XHzKcL89TUwp_g9Zxscp0Ty2uvQQ0M52CxswxQ5nxMwC_oS4IU3cv5E6U',
+  'HcmphLbwLnbeCsvdRIxyiouMIfWelMYpDrUll4JioaaKMOHrQWQ6zwpO6rl474Nm2XmD-WSZq9WLXkYKYg',
+  'HcmphDUGwNIf91Uepph_mh9OJ8Schc1g7cglGtHBvVJQyLPUaSS8Qa98pJ7rOiw',
+  'HcmphOutQQqhfIGfCtU633LAWfWyEF1pgYInYZDwaJah8_EzPzDT4poUai3QdBoiin6-0GBysYqkh8B3Jw'
+];
 $.secretpInfo = {};
 $.ShInviteList = [];
 $.innerShInviteList = [
-  '',
+  'H8mphKvwI0n8PNTMaatUn8kjLbIaWQ',
   '',
   ''
 ];
