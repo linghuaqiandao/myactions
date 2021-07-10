@@ -27,7 +27,7 @@ if ($.isNode()) {
 }
 
 // 汪汪乐园 助力码
-$.invitePinTaskList = ['', '', '', '', '', '']
+$.invitePinTaskList = ['mi4_0HPD0Db9aYirsuyP2Q', '3MI2JdkXuXFuqvAvkMv2Rw', '3kHz21H7DoxUwgzHUN2mMw', 'uO3ZO0fO3MFJqusAXpgDxQ', 'WBVrHcY9GrSu-2vXMOknlQ', '']
 
 const JD_API_HOST = `https://api.m.jd.com/client.action`;
 message = ""
