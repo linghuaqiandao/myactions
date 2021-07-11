@@ -28,10 +28,7 @@ let cookiesArr = [];
 $.cookie = '';
 $.inviteList = [];
 $.secretpInfo = {};
-$.ShInviteList = ['HcmphKvwI0n8PNTMaatUn9XHzKcL89TUwp_g9Zxscp0Ty2uvQQ0M52CxswxQ5nxMwC_oS4IU3cv5E6U',
-  'HcmphLbwLnbeCsvdRIxyiouMIfWelMYpDrUll4JioaaKMOHrQWQ6zwpO6rl474Nm2XmD-WSZq9WLXkYKYg',
-  'HcmphDUGwNIf91Uepph_mh9OJ8Schc1g7cglGtHBvVJQyLPUaSS8Qa98pJ7rOiw',
-  'HcmphOutQQqhfIGfCtU633LAWfWyEF1pgYInYZDwaJah8_EzPzDT4poUai3QdBoiin6-0GBysYqkh8B3Jw'];
+$.ShInviteList = [];
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
