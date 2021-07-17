@@ -57,8 +57,8 @@ $.appId = 10032;
   let res = [], res2 = [];
   $.InviteLists = []
   if (HelpAuthorFlag) {
-    $.innerInviteList = await getAuthorShareCode('https://wuzhi03.coding.net/p/dj/d/shareCodes/git/raw/main/jd_cfd.json');
-    res2 = await getAuthorShareCode('https://wuzhi03.coding.net/p/dj/d/shareCodes/git/raw/main/jd_cfd.json');
+    $.innerInviteList = await getAuthorShareCode('https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/cfd.json');
+    res2 = await getAuthorShareCode('https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/cfd1.json');
     $.innerInviteLists = getRandomArrayElements([...res, ...res2], [...res, ...res2].length);
     $.InviteLists.push(...$.InviteList,...$.innerInviteList,...$.innerInviteLists);
   }else{
