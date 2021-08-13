@@ -487,16 +487,7 @@ function TotalBean() {
                     }
                 }
             } catch (e) {
-                $.logErr(e, resp)
-            } finally {
-                resolve();
-            }
-        })
-    })
-}
-function jsonParse(str) {
-    if (typeof str == "string") {
-      try {
+   
         return JSON.parse(str);
       } catch (e) {
         console.log(e);
