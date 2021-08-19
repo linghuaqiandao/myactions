@@ -30,11 +30,11 @@ let cookiesArr = [], cookie = '', jdFruitShareArr = [], isBox = false, notify, n
 //下面给出两个账号的填写示例（iOS只支持2个京东账号）
 let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
   //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
-  ',
+  //'',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  '',
+  //'',
   //账号三的好友shareCode,不同好友的shareCode中间用@符号隔开
-  '',
+  //'',
 ]
 let message = '', subTitle = '', option = {}, isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;
@@ -1257,34 +1257,34 @@ function timeFormat(time) {
   }
   return date.getFullYear() + '-' + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : '0' + (date.getMonth() + 1)) + '-' + (date.getDate() >= 10 ? date.getDate() : '0' + date.getDate());
 }
-//function readShareCode() {
- // return new Promise(async resolve => {
- //   $.get({url: "https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/JD_Fruit.json",headers:{
-//        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
-//      }}, async (err, resp, data) => {
-//      try {
-//        if (err) {
-//          console.log(`${JSON.stringify(err)}`)
-//          console.log(`${$.name} API请求失败，将切换为备用API`)
-//          console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
-//          $.get({url: `https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/JD_Fruit.json`, 'timeout': 10000},(err, resp, data)=>{
-//          data = JSON.parse(data);})
-//        } else {
-//          if (data) {
-//            console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
-//            data = JSON.parse(data);
-//          }
-//        }
-//      } catch (e) {
-//        $.logErr(e, resp)
-//      } finally {
-//        resolve(data);
-//      }
-//    })
-//    await $.wait(10000);
-//    resolve()
-//  })
-//}
+function readShareCode() {
+  return new Promise(async resolve => {
+    $.get({url: "https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/JD_Fruit.json",headers:{
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 13_2_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.3 Mobile/15E148 Safari/604.1 Edg/87.0.4280.88"
+      }}, async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，将切换为备用API`)
+          console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
+          $.get({url: `https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/JD_Fruit.json`, 'timeout': 10000},(err, resp, data)=>{
+          data = JSON.parse(data);})
+        } else {
+          if (data) {
+            console.log(`随机取助力码放到您固定的互助码后面(不影响已有固定互助)`)
+            data = JSON.parse(data);
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+    await $.wait(10000);
+    resolve()
+  })
+}
 //提交互助码
 // function submitCode() {
 //   return new Promise(async resolve => {
