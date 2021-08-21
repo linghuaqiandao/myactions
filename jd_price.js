@@ -1,10 +1,11 @@
 /*
-cron 5 2 * * *
 update 2021/7/25
 京东价格保护：脚本更新地址 https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_priceProtect.js
 脚本兼容: QuantumultX, Node.js
 ==========================Quantumultx=========================
 打开手机客户端，或者浏览器访问 https://msitepp-fm.jd.com/rest/priceprophone/priceProPhoneMenu
+
+TOKEN抓取说明见作者仓库:https://github.com/ZCY01/daily_scripts.抓取地址见[rewrite_local]
 
 [rewrite_local]
 https:\/\/api\.m.jd.com\/api\?appid=siteppM&functionId=siteppM_priceskusPull url script-request-body https://raw.githubusercontent.com/ZCY01/daily_scripts/main/jd/jd_priceProtectRewrite.js
@@ -20,7 +21,7 @@ const unifiedGatewayName = 'https://api.m.jd.com'
 
 // 请先配置 token!!!最好抓APP的！
 let tokens = ''
-console.log(`\n如果报错。请参考：\nhttps://github.com/ZCY01/daily_scripts/tree/main/jd\n设置token`);
+
 $.HyperParam = {
     sid_hid: '',
     type_hid: '3',
@@ -70,6 +71,17 @@ $.HyperParam = {
     }).finally(() => $.done())
 
 function requireConfig() {
+    function jsonParse(str) {
+        if (typeof str == "string") {
+            try {
+                return JSON.parse(str);
+            } catch (e) {
+                console.log(e);
+                $.msg($.name, '', '请勿随意在BoxJs输入框修改内容\n建议通过脚本去获取cookie')
+                return [];
+            }
+        }
+    }
     return new Promise(resolve => {
         console.log('开始获取配置文件\n')
         $.notify = $.isNode() ? require('./sendNotify') : { sendNotify: async () => { } }
@@ -90,11 +102,11 @@ function requireConfig() {
         }
         console.log(`共${$.cookiesArr.length}个X东账号\n`)
 
-        if ($.isNode) {
+        if ($.isNode()) {
             if (process.env.JD_TOKENS) tokens = process.env.JD_TOKENS
         }
         else {
-            tokens = $.getdata('jd_token') || tokens
+            tokens = $.getdata('jd_tokens') || tokens
         }
         $.tokenList = tokens.split('@')
         resolve()
