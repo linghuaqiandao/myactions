@@ -65,6 +65,10 @@ if ($.isNode()) {
         $.log("检测到您设置了兑换变量，开始兑换")
         await duihuan()
       }
+      if ($.finish) {
+        console.log(`\n======牛奶库存监控完成，结束运行======\n`)
+        return;
+      }
     }
   }
   console.log(`\n开始账号内互助\n`);
@@ -87,28 +91,18 @@ if ($.isNode()) {
   await $.wait(1000)
   console.log(`\n开始帮【zero205】助力，感谢！\n`);
   let shareCodes = [
- 'EE78834EE077ACDEC01199270D1DEE618D7348A78E1B97900AA29C744BDA96D00C9463CE3D33670238160230F84D490EE29440149504E2EB1EAD11840F8E2980DDDA672BF446E2FCC0D1D6B4E52826D1', 
- 'D18AD92E38CF22A4670BB367D225BBAA9790D70929A9938325A4D2E9C5BB0F9074D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1', 
- 'EEF49E6F295E1183F5D8DEA5F4E66E64BBC47C4963B0F91CDCAB351A61C5F11976DEBC297C46466047FD3F29C9E6B2340E3006C9E5976ADF7C555C1A05492338DDDA672BF446E2FCC0D1D6B4E52826D1', 
- '86204B5DDB78CD59FBD8AE8D6D42602D4E8976B0EB25D537F0817BA0DCF083C774D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1', 
- '150A99D24EF3D7ED996D731C26BFD9649905BCBBD40A246699B03EA2D30280E874D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1', 
- 'E8F65146C078BFF179A51E8D24F8C90E0D88E63A9249C2C40921CB3B2CB46F4E74D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1' 
-  ];
+  'EE78834EE077ACDEC01199270D1DEE618D7348A78E1B97900AA29C744BDA96D00C9463CE3D33670238160230F84D490EE29440149504E2EB1EAD11840F8E2980DDDA672BF446E2FCC0D1D6B4E52826D1', 
+  'D18AD92E38CF22A4670BB367D225BBAA9790D70929A9938325A4D2E9C5BB0F9074D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1', 
+  'EEF49E6F295E1183F5D8DEA5F4E66E64BBC47C4963B0F91CDCAB351A61C5F11976DEBC297C46466047FD3F29C9E6B2340E3006C9E5976ADF7C555C1A05492338DDDA672BF446E2FCC0D1D6B4E52826D1', 
+  '86204B5DDB78CD59FBD8AE8D6D42602D4E8976B0EB25D537F0817BA0DCF083C774D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1', 
+  '150A99D24EF3D7ED996D731C26BFD9649905BCBBD40A246699B03EA2D30280E874D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1', 
+  'E8F65146C078BFF179A51E8D24F8C90E0D88E63A9249C2C40921CB3B2CB46F4E74D05EDAD17077AFFA80DAD7387DD28B3BEE5701143FCA11A003164F79A3ADAEDDDA672BF446E2FCC0D1D6B4E52826D1'
+  ][Math.floor((Math.random() * 6))];
   for (let i = 0; i < cookiesArr.length; i++) {
     cookie = cookiesArr[i];
-    $.UserName = decodeURIComponent(cookie.match(/pt_pin=([^; ]+)(?=;?)/) && cookie.match(/pt_pin=([^; ]+)(?=;?)/)[1])
-    if (!useInfo[$.UserName]) continue;
     $.canHelp = true;
-    for (let j = 0; j < shareCodes.length && $.canHelp; j++) {
-      $.oneCodeInfo = shareCodes[j];
-      if ($.UserName === shareCodes[j].usr || $.oneCodeInfo.max) {
-        continue;
-      }
-      console.log(`${$.UserName}去助力【zero205】`)
-      nick = useInfo[$.UserName];
-      await dohelp(shareCodes[j]);
-      await $.wait(3000)
-    }
+    await dohelp(shareCodes);
+    await $.wait(2000)
   }
 })()
   .catch((e) => {
@@ -184,13 +178,7 @@ function getinfo() {
             if (data.success) {
               if (data.data.status === 200) {
                 $.cion = data.data.data.customer.remainChance;
-                console.log(`\n查询成功：京东账号【${$.nickName || $.UserName}】当前剩余金币为：${$.cion}`)
-                // if ($.cion > 750000) {
-                //   $.msg($.name, `【提示】\n京东账号【${$.nickName || $.UserName}】已可兑换牛奶`, `\n兑换入口：京东APP->美食馆->瓜分京豆\n每天10点开始兑换`, { "更多脚本": "https://github.com/zero205/JD_tencent_scf" });
-                //   if ($.isNode()) {
-                //     await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】 ${$.nickName}\n已可兑换牛奶\n兑换入口：京东APP->美食馆->瓜分京豆，每天10点开始兑换\n更多脚本->"https://github.com/zero205/JD_tencent_scf"`);
-                //   }
-                // }
+                console.log(`\n查询金币成功：京东账号【${$.nickName || $.UserName}】当前剩余金币为：${$.cion}`)
               }
             } else {
               console.log(`查询失败：${JSON.stringify(data)}\n`);
@@ -231,10 +219,12 @@ function getAwardList() {
             if (data.success) {
               if (data.data.status === 200) {
                 $.item = data.data.data
-                if ($.item.length > 3 && $.cion > $.item[$.item.length-1].needCoinNum && $.item[$.item.length-1].num > 0) {
+                if ($.item.length > 3 && $.cion > $.item[$.item.length - 1].needCoinNum && $.item[$.item.length - 1].num > 0) {
                   if ($.isNode()) {
-                    await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】 ${$.nickName}\n已可兑换${$.item[$.item.length-1].awardName}\n剩余数量：${$.item[$.item.length-1].num}\n兑换入口：京东APP->美食馆->瓜分京豆\n更多脚本->"https://github.com/zero205/JD_tencent_scf"`);
+                    await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}`, `【京东账号${$.index}】 ${$.nickName}\n已可兑换${$.item[$.item.length - 1].awardName}\n剩余数量：${$.item[$.item.length - 1].num}\n兑换入口：京东APP->美食馆->瓜分京豆\n更多脚本->"https://github.com/zero205/JD_tencent_scf"`);
                   }
+                } else if ($.item.length <= 3) {
+                  console.log(`查询奖品成功：暂无牛奶，当前${$.item[$.item.length - 1].awardName}剩余数量：${$.item[$.item.length - 1].num}\n`);
                 }
               }
             } else {
@@ -461,7 +451,7 @@ function dotree(goodsNumId) {
         if (reust.errorCode == 200) {
           $.log(`${reust.data.data.remark}\n获得${reust.data.data.sendNum}`)
         } else if (reust.errorCode == 500) {
-          $.log("今日已领取完毕,请明日再来！" + reust.errorMessage)
+          $.log(reust.errorMessage)
           $.finish = true
         }
       } catch (e) {
@@ -489,7 +479,7 @@ function dohelp(inviterNick) {
     }
     $.post(options, async (err, resp, data) => {
       try {
-        console.log(data);
+        // console.log(data);
         const reust = JSON.parse(data)
         if (reust.errorCode == 200) {
           if (reust.data.data.remark === `好友助力数量已达上限，无法为好友助力！`) {
