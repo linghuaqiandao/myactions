@@ -58,8 +58,9 @@ message = ""
       if ($.isNode()) {
         if (process.env.HELP_JOYPARK && process.env.HELP_JOYPARK == "false") {
         } else {
-          for (let j = 0; j < $.invitePin.length; j++) {
-            let resp = await getJoyBaseInfo(undefined, 2, $.invitePin[j]);
+          for (let j = 0; j < 5; j++) {
+            $.kgw_invitePin = [""][Math.floor((Math.random() * 5))];
+            let resp = await getJoyBaseInfo(undefined, 2, $.kgw_invitePin);
             if (resp.data && resp.data.helpState && resp.data.helpState === 1) {
               $.log("帮【zero205】开工位成功，感谢！\n");
             } else if (resp.data && resp.data.helpState && resp.data.helpState === 3) {
