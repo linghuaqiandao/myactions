@@ -25,8 +25,8 @@ let message = '', allMessage = '';
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '';
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
-let appIdArr = ['1E1NXxq0', '1ElBTx6o', '1ElJYxqY'];
-let appNameArr = ['众筹许愿池', '企有此礼', '芯意制造盒'];
+let appIdArr = ['1E1NXxq0', '1ElBTx6o'];
+let appNameArr = ['众筹许愿池', '企有此礼'];
 let appId, appName;
 $.shareCode = [];
 if ($.isNode()) {
@@ -68,7 +68,7 @@ if ($.isNode()) {
       }
     }
   }
-  let res = await getAuthorShareCode('https://raw.githubusercontent.com/Aaron-lv/updateTeam/master/shareCodes/wish.json')
+  let res = await getAuthorShareCode('https://raw.githubusercontent.com/linghuaqiandao/myactions/main/test/xyc.json')
   if (!res) {
     $.http.get({url: 'https://purge.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/wish.json'}).then((resp) => {}).catch((e) => console.log('刷新CDN异常', e));
     await $.wait(1000)
