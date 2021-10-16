@@ -21,11 +21,11 @@ cron "59 7,15,23 * * *" script-path=https://raw.githubusercontent.com/Aaron-lv/s
 宠汪汪积分兑换奖品 = type=cron,script-path=https://raw.githubusercontent.com/Aaron-lv/sync/jd_scripts/jd_joy_reward.js, cronexpr="59 7,15,23 * * *", timeout=3600, enable=true
  */
 const $ = new Env('宠汪汪积分兑换奖品');
-const zooFaker = require('./JDJRValidator_Pure');
+const zooFaker = require('./JDJRValidator_Aaron');
 // $.get = zooFaker.injectToRequest2($.get.bind($));
 // $.post = zooFaker.injectToRequest2($.post.bind($));
 let allMessage = '';
-let joyRewardName = 0;//是否兑换京豆，默认0不兑换京豆，其中20为兑换20京豆,500为兑换500京豆，0为不兑换京豆.数量有限先到先得
+let joyRewardName = 20;//是否兑换京豆，默认0不兑换京豆，其中20为兑换20京豆,500为兑换500京豆，0为不兑换京豆.数量有限先到先得
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
@@ -106,12 +106,15 @@ async function joyReward() {
       time = new Date().getHours();
     }
     if (time >= 0 && time < 8) {
+      joyRewardName = 500
       giftSaleInfos = 'beanConfigs0';
     }
     if (time >= 8 && time < 16) {
+      joyRewardName = 500
       giftSaleInfos = 'beanConfigs8';
     }
     if (time >= 16 && time < 24) {
+      joyRewardName = 20
       giftSaleInfos = 'beanConfigs16';
     }
     do {
